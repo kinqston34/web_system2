@@ -1,0 +1,12 @@
+
+.title{
+    margin: auto;
+    background-color: none;
+    font-size: 48px; 
+}
+
+.form-control{
+    width:400px;
+    margin-left: auto;
+    margin-right: auto;
+}

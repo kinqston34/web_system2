@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %} {% bootstrap_javascript%}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <title>login登入</title>
+</head>
+<body>
+    <header class="container title">
+        <div class="row align-content-center">
+            <div class="col text-center">
+                login
+            </div>
+        </div>
+    </header>
+
+    <form action="" class="container mt-3" method="post">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <label for="account" class="form-label">帳號</label>
+                <input type="text" name="account" class="form-control" placeholder="請輸入帳號">
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col text-center">
+                <label for="password" class="form-label">密碼</label>
+                <input type="text" name="password" class="form-control" placeholder="請輸入密碼">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <a href="" class="btn btn-success" type="submit">登入</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
