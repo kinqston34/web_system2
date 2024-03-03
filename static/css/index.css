@@ -3,3 +3,22 @@ body{
     font-size: 48px;
     color:red;
 }
+
+.header-icon{
+    position: absolute;
+    text-align: end;
+    margin-right: 10vh;
+}
+
+.btn{
+    --bs-btn-bg: aqua;
+    --bs-btn-border-color:aqua;
+    --bs-btn-color: rgb(43, 43, 192);
+}
+
+.btn:hover,.btn.show{
+    background-color: rgba(0,255, 255,1);
+    border-color: aqua;
+    color:aquamarine;
+}
+
