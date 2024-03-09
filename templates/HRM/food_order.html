@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂餐系統</title>
+
+    {% bootstrap_css %}{% bootstrap_javascript%}
+
+
+</head>
+<body>
+    <a href="{% url 'HRM:index' %}">回上頁</a>
+
+    <div class="container">
+        菜單
+        <ul>
+            <li><a href="">早餐</a></li>
+            <li><a href="">中餐</a></li>
+            <li><a href="">晚餐</a></li>
+            <li><a href="">other</a></li>
+        </ul>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>員工管理中心</title>
+    {%bootstrap_css%}{%bootstrap_javascript%}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2" style="border: 1px solid blue ; background-color: rgb(0,205,50)">
+                <ul>
+                    <li><a href="{% url 'HRM:index' %}">回主頁</a></li>
+                    <li><a href="{% url 'HRM:new_employee' %}">員工新增(入職)</a></li>
+                    <li><a href="{% url 'HRM:staff' %}">在職員工</a></li>
+                    <ul>
+                        <li><a href="">員工餘額管理</a></li>
+                        <li><a href="">在職員工查詢</a></li>
+                    </ul>
+                    <li><a href="">員工離職</a></li>
+                </ul>
+            </div>
+            <div class="col" style="border: 1px solid red">
+                主板
+                {% if view == "new_employee" %}
+                    {% block new_employee %}{% endblock new_employee %}                
+                {% elif view == "staff" %}
+                    {% block staff %}{% endblock staff %}
+                {% else %}
+                {% endif %}
+            </div>        
+        </div>
+    </div>    
+      
+</body>
+</html>

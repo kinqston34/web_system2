@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "mainapp",
     "developer",
     "CMS",
+    "HRM",
     "django_bootstrap5",
 ]
 

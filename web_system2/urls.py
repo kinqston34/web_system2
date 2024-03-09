@@ -23,4 +23,5 @@ urlpatterns = [
     path("",include("mainapp.urls")),
     path("",include("developer.urls")),
     path("",include("CMS.urls")),
+    path("",include("HRM.urls")),
 ]
