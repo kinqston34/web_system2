@@ -15,7 +15,33 @@
 
 {% endblock new_employee %}
 
-{% block staff %}
-<div>在職員工</div>
+{% block search_employee %}
+<div>員工查詢</div>
+<form action="{% url 'HRM:search_employee' %}" method="post">
+    {% csrf_token %}
+    <label for="mode">選擇查詢方式</label>
+    <select name="mode" id="mode">
+        <option value="name">員工姓名</option>
+        <option value="id">員工id</option>
+    </select>
+    <button type="submit">查詢</button>
+</form>
 
+{% endblock search_employee %}
+
+{% block staff %}
+    {% if function == "base" %}
+        <div>員工基本資料</div>
+    {% elif function == "balance" %}
+        <div>員工餘額管理</div>
+    {% elif function == "order_requirement" %}
+        <div>員工訂餐管理</div>
+    {% else %}
+        <div>在職員工</div>
+    {% endif %}
 {% endblock staff %}
+
+{% block resign %}
+<div>員工離職</div>
+
+{% endblock resign %}

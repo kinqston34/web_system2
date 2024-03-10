@@ -1,0 +1,27 @@
+
+@media screen and (min-width:5.8in) {
+    .logo{
+        margin-top: 2vh;
+        position: absolute;
+        font-size: 40px;
+        margin-left: 3vh;
+        color:cadetblue;
+    }        
+
+    .list{
+        border: 1px solid blue;
+        margin-top: 15vh;
+    }
+    
+    .title{
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width:5.8in) {
+    .logo{
+        display: none;
+        font-size: 24px;
+    }
+}
+
