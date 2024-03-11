@@ -1,20 +1,87 @@
 {% extends "HRM/employee.html" %}
 
+<!------------------------------------ new_employee -------------------------------------------------->
 {% block new_employee %}
+
+{% if function == "HR_create" %}
+<!----- 人事部新增 ------>
+<div>HR新增</div>      
+<form action="{% url 'HRM:HR_create' %}" method="post">
+    {% csrf_token %}
+    <label for="hr_id">帳號</label>
+    <input type="text" name="hr_id" class="hr_id">
+    <label for="password">密碼</label>
+    <input type="text" name="password" class="password">
+    <input type="checkbox" name="manager" value="True">
+    <label for="manager">是否為主管</label>
+    <button type="submit">新增</button>
+</form>
+{% else %}     
+<!----- 員工新增(入職) ------>
 <div>員工入職表單</div>
+
+<span> 
+    <p class="text-center">說明</p>
+    <p>1. 員工編號: 由系統產生</p>
+    <p>2. 部門:</p>
+        <table class="table">
+            <tr>
+                <th>代號</th>
+                <th>名稱</th>
+            </tr>
+        {% for k,v in departments.items %}
+            <tr>
+                <td>{{ k }}</td>
+                <td>{{ v }}</td>
+            </tr>            
+        {% endfor %}
+        </table>
+    
+    <p>3. 位階:</p>
+        <table class="table">
+            <tr>
+                <th>代號</th>
+                <th>名稱</th>
+            </tr>
+        {% for k,v in level.items %}
+            <tr>
+                <td>{{ k }}</td>
+                <td>{{ v }}</td>
+            </tr>            
+        {% endfor %}
+        </table>
+</span>
 <form action="" method="post">
-    <label for="" class=""></label>
-    <input type="text" name="" class="">
-    <label for="" class=""></label>
-    <input type="text" name="" class="">
-    <label for="" class=""></label>
-    <input type="text" name="" class="">
+    {% csrf_token %}
+    <label for="staff_id" class="">員工編號</label>
+    <input type="text" name="staff_id" class="">
+    <label for="name" class="">姓名</label>
+    <input type="text" name="name" class="">
+    <label for="en_name" class="">英文名</label>
+    <input type="text" name="en_name" class="">
+    <label for="departments" class="">部門</label>
+    <select name="departments" class="">
+        {% for k,v in departments.items %}
+            <option value="{{ k }}">{{ v }}</option>
+        {% endfor %}
+    </select>
+    <label for="level" class="">位階</label>
+    <select name="level" class="">
+        {% for k,v in level.items %}
+            <option value="{{ k }}">{{ v }}</option>
+        {% endfor %}
+    </select>
+    <label for="on_the_job" class="">在職狀態</label>
+    <input type="text" name="on_the_job" class="">
 
     <input type="button" value="新增">
 </form>
 
+{% endif %}
+
 {% endblock new_employee %}
 
+<!------------------------------------ search_employee -------------------------------------------------->
 {% block search_employee %}
 <div>員工查詢</div>
 <form action="{% url 'HRM:search_employee' %}" method="post">
@@ -29,6 +96,7 @@
 
 {% endblock search_employee %}
 
+<!------------------------------------ staff -------------------------------------------------->
 {% block staff %}
     {% if function == "base" %}
         <div>員工基本資料</div>
@@ -41,6 +109,7 @@
     {% endif %}
 {% endblock staff %}
 
+<!------------------------------------ resign -------------------------------------------------->
 {% block resign %}
 <div>員工離職</div>
 

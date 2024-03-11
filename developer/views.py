@@ -32,7 +32,6 @@ def createdeveloper(request):
             dev = Developer(
                 dev_id = form.cleaned_data["dev_id"],
                 password = form.cleaned_data["password"],
-                name = form.cleaned_data["name"],
                 manager = True if bool(form.cleaned_data["manager"]) else False,        
             )
             dev.save()

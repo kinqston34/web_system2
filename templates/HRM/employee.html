@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="{% static 'css/HRM.css' %}">
 </head>
 <body>
-    <div class="logo">xx科技</div>
     <div class="container-fluid">
         <div class="row">
-            
-            <div class="col-2 list">
-                <div class="title">員工管理中心</div>
+            <header class="col-2 list">
+                <div class="logo">xx科技</div>
+                <div class="title"><a href="{% url 'HRM:employee' %}">員工管理中心</a></div>
                 <ul>
                     <li><a href="{% url 'HRM:new_employee' %}">員工新增(入職)</a></li>
+                    <ul>
+                        <li><a href="{% url 'HRM:HR_create' %}">人事部新增</a></li>
+                    </ul>
                     <li><a href="{% url 'HRM:search_employee' %}">員工查詢</a></li>
                     <li><a href="{% url 'HRM:staff' %}">在職員工</a></li>
                     <ul>
@@ -28,23 +30,28 @@
                     </ul>
                     <li><a href="{% url 'HRM:resign' %}">員工離職</a></li>
 
-                    <li><a href="{% url 'HRM:index' %}">回主頁</a></li>
+                    <li><a href="{% url 'HRM:login' %}">登出</a></li>
                 </ul>
-            </div>
-            <div class="col" style="border: 1px solid red">
-                主板
-                {% if view == "new_employee" %}
-                    {% block new_employee %}{% endblock new_employee %}                
-                {% elif view == "search_employee" %}
-                    {% block search_employee %}{% endblock search_employee %}
-                {% elif view == "staff" %}
-                    {% block staff %}{% endblock staff %}
-                {% elif view == "resign" %}
-                    {% block resign %}{% endblock resign %}
-                {% else %}
-
-                {% endif %}
-            </div>        
+            </header>
+            <main class="col main">
+                <div class="container-fluid">
+                    {% if view == "new_employee" %}
+                        {% block new_employee %}{% endblock new_employee %}                
+                    {% elif view == "search_employee" %}
+                        {% block search_employee %}{% endblock search_employee %}
+                    {% elif view == "staff" %}
+                        {% block staff %}{% endblock staff %}
+                    {% elif view == "resign" %}
+                        {% block resign %}{% endblock resign %}
+                    {% else %}
+                        
+                        <div class="row">
+                            主板
+                        </div>
+                    
+                    {% endif %}
+                </div>
+            </main>        
         </div>
     </div>    
       

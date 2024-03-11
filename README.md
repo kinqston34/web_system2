@@ -17,3 +17,5 @@
 * create HRM app & urls
 2024/3/10
 * create urls & set HRM staff search
+2024/3/11
+* create DB & Forms HRM (staff & HR) & set html view 
