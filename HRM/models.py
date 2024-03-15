@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 
@@ -48,6 +49,50 @@ class HR(models.Model):
     class Meta:
         db_table = "HR"
 
+class MealSupplier(models.Model):
+
+    """
+    餐點供應商資料表
+
+    ms_id : 店家編號,int ,max=8 ,pk,Fk
+    name : 店家名 ,string ,max=20 ,NOT NULL
+    phone : 店家電話 ,string ,max=10 ,NOT NULL
+    contact_person : 店家負責人 ,string ,max=10 ,NOT NULL
+    contact_person_phone : 店家負責人電話 ,string ,max=10 ,NOT NULL
+    meal_time : 早餐(B) 午餐(L) 晚餐(D) 下午茶(A) 宵夜(N) ,string ,max=5 ,NOT NULL  
+    take_way : 自取(S) 外送(D) ,string ,max=2 ,NOT NULL 
+    score : 評分 ,float ,一位小數
+    """
+
+    ms_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=20,null=False)
+    phone = models.CharField(max_length=10,null=False)
+    contact_person = models.CharField(max_length=10,null=False)
+    contact_person_phone = models.CharField(max_length=10,null=False)
+    meal_time = models.CharField(max_length=5,null=False)
+    take_way = models.CharField(max_length=2,null=False)
+    score = models.FloatField(null=False)
+
+    class Meta:
+        db_table = "meal_supplier"
+
+class StaffAccount():
+
+    """
+    員工餘額資料表
+
+    staff_id : 員工id , pk , FK(Staff)
+    balance : 餘額 , int , max_digits=6,default=0
+    time : 時間 , date, default=date.today
+    """
+
+    staff_id = models.OneToOneField(Staff,on_delete=models.CASCADE,primary_key=True)
+    type = models.CharField(max_length=1,null=False)
+    balance = models.IntegerField(default=0)
+    time = models.DateField(default=date.today)
+
+    class Meta:
+        db_table = "staff_account"
 
 
 
