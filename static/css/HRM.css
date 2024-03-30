@@ -3,6 +3,14 @@
     background-color: #BBFFFF;
 }
 
+.table_department{
+    width: 50%;
+}
+
+.table_rank{
+    width: 50%;
+}
+
 @media screen and (min-width:5.8in) {
     .logo{
         text-align: center;

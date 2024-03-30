@@ -21,3 +21,8 @@
 * create DB & Forms HRM (staff & HR) & set html view 
 #### 2024/3/15
 * HRM models.py create class (MealSupplier,StaffAccount)
+
+#### 2024/3/30
+* HRM 員工查詢 result table 建立 (連結資料庫)
+* HRM staff(基礎登入) | HR帳號(基礎登入) 功能修改 
+* HRM login (基礎登入)

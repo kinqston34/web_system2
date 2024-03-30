@@ -4,8 +4,8 @@
 {% block new_employee %}
 
 {% if function == "HR_create" %}
-<!----- 人事部新增 ------>
-<div>HR新增</div>      
+<!----- 人事管理帳號新增 ------>
+<div>HR帳號新增</div>      
 <form action="{% url 'HRM:HR_create' %}" method="post">
     {% csrf_token %}
     <label for="hr_id">帳號</label>
@@ -24,7 +24,7 @@
     <p class="text-center">說明</p>
     <p>1. 員工編號: 由系統產生</p>
     <p>2. 部門:</p>
-        <table class="table">
+        <table class="table table_department">
             <tr>
                 <th>代號</th>
                 <th>名稱</th>
@@ -38,7 +38,7 @@
         </table>
     
     <p>3. 位階:</p>
-        <table class="table">
+        <table class="table table_rank">
             <tr>
                 <th>代號</th>
                 <th>名稱</th>
@@ -51,7 +51,7 @@
         {% endfor %}
         </table>
 </span>
-<form action="" method="post">
+<form action="{% url 'HRM:new_employee' %}" method="post">
     {% csrf_token %}
     <label for="staff_id" class="">員工編號</label>
     <input type="text" name="staff_id" class="">
@@ -71,10 +71,8 @@
             <option value="{{ k }}">{{ v }}</option>
         {% endfor %}
     </select>
-    <label for="on_the_job" class="">在職狀態</label>
-    <input type="text" name="on_the_job" class="">
 
-    <input type="button" value="新增">
+    <input type="submit" value="新增">
 </form>
 
 {% endif %}
@@ -93,7 +91,49 @@
     </select>
     <button type="submit">查詢</button>
 </form>
+<form action="{% url 'HRM:search_employee_2' %}" method="post" class="mt-5">
+    {% csrf_token %}
+    {% if query == "name" %}
+        <label for="name">請輸入員工姓名:</label>
+        <input type="text" name="name" />
+        <button type="submit">查詢</button>
+    {% elif query == "id" %}
+        <label for="id">請輸入員工編號:</label>
+        <input type="text" name="id">
+        <button type="submit">查詢</button>
+    {% else %}
+        
+    {% endif %}
+</form>
 
+    <table class="table">   <!--result table -->
+        <tr>
+            <th>員工編號</th>
+            <th>姓名</th>
+            <th>英文名</th>
+            <th>部門</th>
+            <th>職階</th>
+            <th>現職狀態</th>
+        </tr>
+
+        {% if result == "no" %}
+        <tr><td>查無結果<td><tr>
+        {% elif result %}
+        <tr>
+            <td>{{result.staff_id}}</td>
+            <td>{{result.name}}</td>
+            <td>{{result.en_name}}</td>
+            <td>{{result.departments}}</td>
+            <td>{{result.level}}</td>
+            {% if result.on_the_job %}
+                <td>在職</td>
+            {% else %}
+                <td>離職</td>
+            {%endif%}
+        </tr>    
+        {% endif %}
+    </table>
+    
 {% endblock search_employee %}
 
 <!------------------------------------ staff -------------------------------------------------->
