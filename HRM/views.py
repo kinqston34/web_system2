@@ -8,9 +8,12 @@ def login(request):
     if request.method == "POST":
         
         form = HRMLoginFrom(request.POST)
+        
         # print(form.data,form.errors)
         if form.is_valid():
+            
             return redirect("HRM:employee") 
+        # print(form.errors)
         return redirect("HRM:login")
     return render(request,"HRM/login.html")
 
@@ -55,11 +58,15 @@ def new_employee(request):     #員工入職
     ref = {"view":"new_employee","departments":{"Chair":"董事長","Pres":"總經理","HR":"人事部","IT":"資訊部","ED":"工程部"},"level":{"M":"主管","S":"一般職員"}}      #GET 
     if "HR_create" in request.path_info:
         ref["function"] = "HR_create"
+    elif "base" in request.path_info:    # 基本資料新增修改
+        ref["function"] = "base"
 
     return render(request,"HRM/employee_extend.html",ref)
 
-def search_employee(request):    #員工查詢
+def search_employee(request):    #員工查詢 頁面
+    
     ref = {"view":"search_employee"}
+
     if request.method == "POST":
         mode = request.POST.get("mode")
         print(mode)
@@ -70,11 +77,20 @@ def search_employee(request):    #員工查詢
             ref["query"] = "id"
             request.session["mode"] = "id"
 
+    if "base/search" in request.path_info:   # 員工基本資料的查詢
+        ref["view"] = "new_employee"
+        ref["function"] = "base"
+    print(ref)
     return render(request,"HRM/employee_extend.html",ref)
 
-def search_employee_db(request):
-    ref = {"view":"search_employee"}
-    if request.method == "POST" and "mode" in request.session:
+def search_employee_db(request):  #員工查詢db
+
+    if "new_employee" in request.path_info:
+        ref = {"view":"new_employee","function":"base"}
+    else:
+        ref = {"view":"search_employee"}
+    
+    if request.method == "POST" and "mode" in request.session:  
         mode = request.session["mode"]
         if mode == "name":
             name = request.POST["name"]
@@ -96,15 +112,13 @@ def search_employee_db(request):
             ref["result"] = query_data
         else:
             print("no thie mode")
-        print(ref["result"])
+        print(ref)
         return render(request,"HRM/employee_extend.html",ref)     
 
 def staff(request):            #在職員工
 
     ref = {"view":"staff"}
-    if "base" in request.path_info:    # 基本資料修改
-        ref["function"] = "base"
-    elif "balance" in request.path_info:    #員工餘額管理
+    if "balance" in request.path_info:    #員工餘額管理
         ref["function"] = "balance"
     elif "order_requirement" in request.path_info:  #訂餐需求管理
         ref["function"] = "order_requirement"

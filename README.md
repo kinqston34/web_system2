@@ -26,3 +26,8 @@
 * HRM 員工查詢 result table 建立 (連結資料庫)
 * HRM staff(基礎登入) | HR帳號(基礎登入) 功能修改 
 * HRM login (基礎登入)
+
+#### 2024/3/31
+* HRM 員工基本資料 修改位置(在職員工 -> 員工新增)
+* HRM 員工基本資料(base) -> 增加search(完成) -> 增加query(連結成功，還需要調整參數) 
+* HRM login Form 新增db 判斷

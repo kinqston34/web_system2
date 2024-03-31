@@ -16,6 +16,40 @@
     <label for="manager">是否為主管</label>
     <button type="submit">新增</button>
 </form>
+<!----- 員工基本資料 ----->
+{% elif function == "base" %}
+<div>基本資料</div>
+
+<div>必須要先新增員工</div>
+
+<form action="{% url 'HRM:search_employee_from_base' %}" method="post">
+    {% csrf_token %}
+    <label for="mode">選擇查詢方式</label>
+    <select name="mode" id="mode">
+        <option value="name">員工姓名</option>
+        <option value="id">員工id</option>
+    </select>
+    <button type="submit">查詢</button>
+</form>
+
+<form action="{% url 'HRM:search_employee_from_base2' %}" method="post" class="mt-5">
+    {% csrf_token %}
+    <div>在職員工列表</div>
+    {% if query == "name" %}
+        <label for="name">請輸入員工姓名:</label>
+        <input type="text" name="name" />
+        <button type="submit">查詢</button>
+    {% elif query == "id" %}
+        <label for="id">請輸入員工編號:</label>
+        <input type="text" name="id">
+        <button type="submit">查詢</button>
+    {% else %}
+        
+    {% endif %}
+</form>
+
+
+
 {% else %}     
 <!----- 員工新增(入職) ------>
 <div>員工入職表單</div>
@@ -138,14 +172,15 @@
 
 <!------------------------------------ staff -------------------------------------------------->
 {% block staff %}
-    {% if function == "base" %}
-        <div>員工基本資料</div>
-    {% elif function == "balance" %}
+    {% if function == "balance" %}
         <div>員工餘額管理</div>
     {% elif function == "order_requirement" %}
         <div>員工訂餐管理</div>
     {% else %}
         <div>在職員工</div>
+
+        <span>請點選左側選單功能 : </span>
+        <span>員工餘額管理、員工訂餐管理</span>
     {% endif %}
 {% endblock staff %}
 

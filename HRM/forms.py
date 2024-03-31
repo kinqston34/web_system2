@@ -1,4 +1,6 @@
 from django import forms
+from HRM.models import HR
+from django.core.exceptions import ValidationError
 
 class StaffForm(forms.Form):     # 建立員工資料表用的Form
 
@@ -33,4 +35,21 @@ class HRForm(forms.Form):   #HR 建立時用的Form
 
 class HRMLoginFrom(HRForm):    #登入用Form
 
-    pass
+    def clean(self):
+
+        hr_id = self.cleaned_data.get("hr_id")
+        password = self.cleaned_data.get("password")
+        
+        try:
+            HR.objects.get(hr_id = hr_id,password = password)
+        except HR.DoesNotExist:
+            raise ValidationError("db no query")  #新增驗證錯誤到 forms.error中
+        else:
+            return self.cleaned_data
+        
+    
+
+        
+
+
+
