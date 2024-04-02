@@ -37,14 +37,23 @@ class HR(models.Model):
     人事系統資料表:
 
     欄位:
-    * hr_id : HR員工編號 , string , max=8 , pk
+    * hr_id : HR員工編號 , pk , fk => from Staff departments = HR
     * password: 密碼 , string , max=20
-    * manager: 主管 , boolen , 預設False
     """
 
-    hr_id = models.CharField(max_length=8,primary_key=True)
+    hr_id = models.ForeignKey(Staff,on_delete=models.CASCADE,primary_key=True,limit_choices_to={"departments":"HR"},db_column = "hr_id",related_name="hr_id")
     password = models.CharField(max_length=20,null=False)
-    manager = models.BooleanField(default=False)
+    
+    def save(self,*args, **kwargs):
+
+        try:
+            staff = Staff.objects.get(staff_id = self.hr_id.staff_id , departments = "HR")
+        except Staff.DoesNotExist :
+            print("HR找不到,不儲存")
+            return False
+        else:
+            super().save(*args,**kwargs)
+            return True
 
     class Meta:
         db_table = "HR"

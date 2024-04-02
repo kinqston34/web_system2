@@ -26,12 +26,12 @@ class HRForm(forms.Form):   #HR 建立時用的Form
 
     columns: 
     hr_id, password: (string)
-    manager : (bool) required=False 
+    
     """
     
     hr_id = forms.CharField(max_length=8)
     password = forms.CharField(max_length=20)
-    manager = forms.BooleanField(required=False)
+   
 
 class HRMLoginFrom(HRForm):    #登入用Form
 

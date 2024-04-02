@@ -33,11 +33,10 @@ def new_employee(request):     #員工入職
             if form.is_valid():    
                 hr_id = form.cleaned_data["hr_id"]
                 password = form.cleaned_data["password"]
-                manager = form.cleaned_data["manager"]
+                
                 # print(hr_id,password,bool(manager))
-                db_HR = HR(hr_id,password,bool(manager))
-                db_HR.save()
-                return HttpResponse("OK")
+                db_HR = HR(hr_id,password)
+                return HttpResponse("OK") if db_HR.save() else HttpResponse("不是HR,不儲存")
             else:
                 return HttpResponse("表單error")
         

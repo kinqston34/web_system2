@@ -5,15 +5,14 @@
 
 {% if function == "HR_create" %}
 <!----- 人事管理帳號新增 ------>
-<div>HR帳號新增</div>      
+<div>HR帳號新增和修改</div>
+<div> 如果 已經申請過 資料庫不會重複紀錄帳號 可以更改密碼 </div>         
 <form action="{% url 'HRM:HR_create' %}" method="post">
     {% csrf_token %}
     <label for="hr_id">帳號</label>
     <input type="text" name="hr_id" class="hr_id">
     <label for="password">密碼</label>
     <input type="text" name="password" class="password">
-    <input type="checkbox" name="manager" value="True">
-    <label for="manager">是否為主管</label>
     <button type="submit">新增</button>
 </form>
 <!----- 員工基本資料 ----->
