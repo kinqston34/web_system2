@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from developer.models import Developer
 from developer.forms import DeveloperLoginForm,DeveloperCreateForm
 # Create your views here.
@@ -12,12 +12,9 @@ def login(request):
     if request.method == "POST":
         form = DeveloperLoginForm(request.POST)
         if form.is_valid():
-            dev_id = form.cleaned_data["account"]
-            password = form.cleaned_data["password"]
-        
             
             return redirect("developer:developer")
-    
+        return redirect("developer:login")
     return render(request,"developer/login.html")
 
 def logout(request):
@@ -29,13 +26,12 @@ def createdeveloper(request):
     if request.method == "POST":
         form = DeveloperCreateForm(request.POST)
         if form.is_valid():
-            dev = Developer(
-                dev_id = form.cleaned_data["dev_id"],
-                password = form.cleaned_data["password"],
-                manager = True if bool(form.cleaned_data["manager"]) else False,        
-            )
-            dev.save()
-            return redirect("developer:developer")
+            dev_id = form.cleaned_data["dev_id"]
+            password = form.cleaned_data["password"]
+            print(dev_id)
+            dev = Developer(dev_id,password)
+            return redirect("developer:developer") if dev.save() else HttpResponse("不是公司員工")
+            
 
     return render(request,"developer/create.html")
 

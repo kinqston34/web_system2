@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect,HttpResponse
 from HRM.models import Staff,HR
-from HRM.forms import HRForm,StaffForm,HRMLoginFrom
+from HRM.forms import HRForm,StaffForm,HRMLoginForm
 # Create your views here.
 
 def login(request):
 
     if request.method == "POST":
         
-        form = HRMLoginFrom(request.POST)
+        form = HRMLoginForm(request.POST)
         
         # print(form.data,form.errors)
         if form.is_valid():

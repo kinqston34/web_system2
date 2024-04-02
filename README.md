@@ -34,3 +34,4 @@
 
 #### 2024/4/1 ~ 4/2 
 * HRM HR帳號 models save條件設定(可以新增和修改) ， 刪除重複欄位
+* 重整Develper,developer帳號登入,create 

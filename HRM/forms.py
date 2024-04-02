@@ -33,7 +33,7 @@ class HRForm(forms.Form):   #HR 建立時用的Form
     password = forms.CharField(max_length=20)
    
 
-class HRMLoginFrom(HRForm):    #登入用Form
+class HRMLoginForm(HRForm):    #登入用Form
 
     def clean(self):
 

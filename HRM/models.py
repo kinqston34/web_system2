@@ -47,7 +47,7 @@ class HR(models.Model):
     def save(self,*args, **kwargs):
 
         try:
-            staff = Staff.objects.get(staff_id = self.hr_id.staff_id , departments = "HR")
+            Staff.objects.get(staff_id = self.hr_id.staff_id , departments = "HR")
         except Staff.DoesNotExist :
             print("HR找不到,不儲存")
             return False
