@@ -1,4 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
+from CMS.models import CMS
+from CMS.forms import CMSLoginForm
 
 # Create your views here.
 
@@ -8,7 +10,10 @@ def index(request):
 def login(request):
 
     if request.method == "POST":
-        return redirect("CMS:index")    
+        form = CMSLoginForm(request.POST)
+        if form.is_valid():
+            return redirect("CMS:index")    
+        return redirect("CMS:login")
     return render(request,"CMS/login.html")
 
 def logout(request):

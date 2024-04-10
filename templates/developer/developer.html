@@ -13,7 +13,18 @@
 <body>
     <div class="container-fluid">
         <a href="{% url 'developer:logout' %}">登出</a>
-        <a href="{% url 'developer:createdeveloper'%}">new developer</a>
+        <div>帳號新增</div>
+        <ul>
+            <li><a href="{% url 'developer:createdeveloper'%}">工程師專用管理平台帳號新增</a></li>
+            <li><a href="{% url 'developer:createCMS' %}">後臺管理系統帳號新增</a></li>
+            <li><a href="{% url 'developer:createHRM' %}">人事管理系統帳號新增</a></li>
+        </ul>
+        <div>系統連結</div>
+        <ul>
+            <li><a href="{% url 'CMS:login' %}">後臺管理系統(CMS)</a></li>
+            <li><a href="{% url 'HRM:login' %}">人事管理系統(HRM)</a></li>
+        </ul>
+        
     </div>
    
     <div class="container-fluid">

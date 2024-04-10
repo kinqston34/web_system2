@@ -7,5 +7,7 @@ urlpatterns = [
     url("^developer/$",views.developer,name="developer"), 
     url("^developer/login",views.login,name="login"),
     url("^developer/logout",views.logout,name="logout"),
-    url("^developer/create",views.createdeveloper,name="createdeveloper"),
+    url("^developer/create_developer",views.create,name="createdeveloper"),
+    url("^developer/create_CMS",views.create,name="createCMS"),
+    url("^developer/create_HRM",views.create,name="createHRM"),
 ]

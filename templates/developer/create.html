@@ -6,6 +6,9 @@
     <title>new developer</title>
 </head>
 <body>
+    {% if create == "developer" %}
+    <h3>工程師專用平台帳號新增</h3>
+
     <form action="{% url 'developer:createdeveloper' %}" method="post">
         {% csrf_token %}
         <label for="dev_id" class="">員工id:</label>
@@ -15,5 +18,31 @@
         
         <button type="submit">註冊</button>
     </form>
+    {% elif create == "CMS" %}
+    <h3>後臺管理系統帳號新增</h3>
+
+    <form action="{% url 'developer:createCMS' %}" method="post">
+        {% csrf_token %}
+        <label for="CMS_id" class="">員工id:</label>
+        <input type="text" name="CMS_id" class="">
+        <label for="password" class="">密碼:</label>
+        <input type="password" name="password" class="">
+        
+        <button type="submit">註冊</button>
+    </form>
+    {% elif create == "HRM" %}
+    <h3>人事管理系統帳號新增</h3>
+
+    <form action="{% url 'developer:createHRM' %}" method="post">
+        {% csrf_token %}
+        <label for="hr_id" class="">員工id:</label>
+        <input type="text" name="hr_id" class="">
+        <label for="password" class="">密碼:</label>
+        <input type="password" name="password" class="">
+        
+        <button type="submit">註冊</button>
+    </form>
+    {% endif %}
+    
 </body>
 </html>
