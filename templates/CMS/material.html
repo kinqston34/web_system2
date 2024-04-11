@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原料管理</title>
+</head>
+<body>
+    {% if material == "material_supplier" %}
+    <div>供應商新增</div>
+
+    <form action="{% url 'CMS:material_supplier' %}" method="post">
+        {% csrf_token %}
+        <label for="supplier_id">原料商編號:</label>
+        <input type="text" name="supplier_id">
+        <label for="name">供應商名稱:</label>
+        <input type="text" name="name">
+        <label for="address">公司地址:</label>
+        <input type="text" name="address">
+        <label for="tel">公司電話:</label>
+        <input type="text" name="tel">
+        <label for="salesman">業務聯絡人:</label>
+        <input type="text" name="salesman">
+        <label for="salesman_phone">業務電話:</label>
+        <input type="text" name="salesman_phone">
+
+        <input type="submit" value="新增">
+    </form>
+
+    {% elif material == "raw_material" %}
+    <div>原料新增</div>
+
+    <form action="{% url 'CMS:raw_material' %}" method="post">
+        {% csrf_token %}
+        <label for="material_id">原料編號:</label>
+        <input type="text" name="material_id">
+        <label for="name">原料名稱:</label>
+        <input type="text" name="name">
+        <label for="category">原料類別:</label>
+        <input type="text" name="category">
+        <select name="" id="">
+            <option value=""></option>
+        </select>
+    
+        <input type="submit" value="新增">
+    </form>
+
+    {% endif %}
+
+    <div><a href="{% url 'CMS:index' %}">回上頁</a></div>
+</body>
+</html>

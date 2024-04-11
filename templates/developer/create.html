@@ -6,6 +6,7 @@
     <title>new developer</title>
 </head>
 <body>
+    
     {% if create == "developer" %}
     <h3>工程師專用平台帳號新增</h3>
 
@@ -44,5 +45,7 @@
     </form>
     {% endif %}
     
+    <div><a href="{% url 'developer:developer' %}">回上頁</a></div>
+
 </body>
 </html>

@@ -6,14 +6,14 @@
     <title>後台管理系統</title>
 </head>
 <body>
-    CMS INDEX
-    <a href="{% url 'CMS:logout' %}">登出</a>
-
-    <a href="{% url 'CMS:material_supply' %}">原料供應商管理</a>
+    <div>CMS INDEX <span><a href="{% url 'CMS:logout' %}">登出</a></span></div>
+    
+    <div>原料管理</div>
+    <ul>
+        <li><a href="{% url 'CMS:material_supplier' %}">原料商</a></li>
+        <li><a href="{% url 'CMS:raw_material' %}">原料</a></li>
+    </ul>
     <a href="{% url 'CMS:order' %}">訂單管理</a>
     <a href="{% url 'CMS:inventory' %}">庫存管理</a>
-    <a href="{% url 'CMS:HR' %}">人事管理</a>
-    <a href="{% url 'CMS:food_supply' %}">餐點供應商管理</a>
-
 </body>
 </html>

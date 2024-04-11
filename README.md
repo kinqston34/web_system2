@@ -39,3 +39,7 @@
 #### 2024/4/10 
 * CMS 建立 帳號登入
 * Developer 建立 新增 developer,CMS,HR帳號 & 連結
+
+#### 2024/4/11
+* CMS model form 原料商 原料建立
+* CMS views 設定新增 原料商(完成) 原料(因為外鍵未完成)
