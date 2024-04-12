@@ -66,6 +66,24 @@ class RawMaterial(models.Model):
     class Meta():
         db_table = "Raw_Material"
 
+class Product(models.Model):
+
+    """
+    成品資料表
+    product_id : pk , max=8
+    name : 產品名稱
+    category : 產品類型 
+    """
+
+    product_id = models.CharField(max_length=8,primary_key=True)
+    name = models.CharField(max_length=30)
+    category = models.CharField(max_length=2)
+
+    class Meta():
+        db_table = "product"
+
+
+
 
 
 

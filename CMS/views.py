@@ -29,30 +29,35 @@ def material(request):
         if "material_supplier" in request.path_info:
             form = MaterialSupplyCreateForm(request.POST)
             if form.is_valid():
-                fields = ["supplier_id","name","address","tel","salesman","salesman_phone"]
                 data = {}
-                for field in fields:
+                for field in form.cleaned_data.keys():
                     data[field] = form.cleaned_data[field]
                 db_supply = MaterialSupply(**data)
                 db_supply.save()
                 return HttpResponse("supplier ok")
             return HttpResponse("supplier form_error")
+        
         elif "raw_material" in request.path_info:
             form = RawMaterialCreateForm(request.POST)
             if form.is_valid():
-                fields = ["material_id","name","category"]
                 data = {}
-                for field in fields:
-                    data[field] = form.cleaned_data[field]
-                db_supply = RawMaterial(**data)
-                db_supply.save()
+                for field in form.cleaned_data.keys():
+                    if field == "supplier_id":
+                        data[field] = MaterialSupply.objects.get(supplier_id = form.cleaned_data[field])        
+                    else:
+                        data[field] = form.cleaned_data[field]
+                
+                db_raw = RawMaterial(**data)
+                db_raw.save()
                 return HttpResponse("raw ok")
             return HttpResponse("raw form_error")
 
     if "material_supplier" in request.path_info:
         ref["material"] = "material_supplier"
     elif "raw_material" in request.path_info:
+        db_supply = MaterialSupply.objects.all()
         ref["material"] = "raw_material"
+        ref["db_data"] = db_supply
 
     return render(request,"CMS/material.html",ref)
 

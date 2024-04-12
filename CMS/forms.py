@@ -67,4 +67,9 @@ class RawMaterialCreateForm(forms.Form):
     material_id = forms.CharField(max_length=8)
     name = forms.CharField(max_length=30)
     category = forms.CharField(max_length=2)
+    supplier_id = forms.CharField(max_length=7)
+
+
+
+
     

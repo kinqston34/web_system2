@@ -38,8 +38,11 @@
         <input type="text" name="name">
         <label for="category">原料類別:</label>
         <input type="text" name="category">
-        <select name="" id="">
-            <option value=""></option>
+        <label for="supplier_id">供應商</label>
+        <select name="supplier_id" id="supplier_id">
+            {% for data in db_data %}
+            <option value="{{data.supplier_id}}">{{data.name}}</option>
+            {% endfor %}
         </select>
     
         <input type="submit" value="新增">
