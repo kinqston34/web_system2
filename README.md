@@ -47,3 +47,8 @@
 #### 2024/4/12
 * CMS model form 產品 建立
 * CMS views 設定新增 原料商(完成) 原料(完成)
+
+#### 2024/4/22
+* CMS models Product Inventory 建立
+* CMS 產品品項新增 建立 (可以新增和修改) -> Product (models.py & forms.py)
+* CMS 設定 inventory 產品品項新增 (views.py)

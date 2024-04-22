@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
-from CMS.models import CMS,MaterialSupply,RawMaterial
-from CMS.forms import CMSLoginForm,MaterialSupplyCreateForm,RawMaterialCreateForm
+from CMS.models import CMS,MaterialSupply,RawMaterial,Product
+from CMS.forms import CMSLoginForm,MaterialSupplyCreateForm,RawMaterialCreateForm,ProductCreateForm
 
 # Create your views here.
 
@@ -20,6 +20,18 @@ def logout(request):
     return redirect("CMS:login")
 
 def inventory(request):
+
+    if request.method == "POST":
+        form = ProductCreateForm(request.POST)
+        if form.is_valid():
+            data = {}
+            for field in form.cleaned_data.keys():
+                data[field] = form.cleaned_data[field]
+            db_product = Product(**data)
+            db_product.save()
+            return render(request,"CMS/inventory.html",{"create":"success"})
+        return HttpResponse("Product form_error")
+    
     return render(request,"CMS/inventory.html")
 
 def material(request):

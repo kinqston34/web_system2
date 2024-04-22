@@ -60,7 +60,7 @@ class RawMaterialCreateForm(forms.Form):
     '''
     model : Raw_Material
 
-    colums :
+    columns :
     material_id,name,category,supplier_id(fk)
     '''
 
@@ -69,7 +69,21 @@ class RawMaterialCreateForm(forms.Form):
     category = forms.CharField(max_length=2)
     supplier_id = forms.CharField(max_length=7)
 
+class ProductCreateForm(forms.Form):
 
+    '''
+    model : Product
+
+    columns :
+
+    '''
+
+    product_id = forms.CharField(max_length=8)
+    name = forms.CharField(max_length=30)
+    category = forms.CharField(max_length=2)
+    stage = forms.CharField(max_length=3)
+
+    
 
 
     

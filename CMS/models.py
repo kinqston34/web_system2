@@ -70,17 +70,39 @@ class Product(models.Model):
 
     """
     成品資料表
-    product_id : pk , max=8
+    product_id : 產品id , pk , max=8
     name : 產品名稱
-    category : 產品類型 
+    category : 產品類型 (如 金屬、鐵 ...)
+    stage : 產品階段 (SFG : 半成品,FGI : 入庫)
     """
 
     product_id = models.CharField(max_length=8,primary_key=True)
     name = models.CharField(max_length=30)
     category = models.CharField(max_length=2)
+    stage = models.CharField(max_length=3)
 
     class Meta():
         db_table = "product"
+
+class Inventory(models.Model):
+
+    """
+    庫存資料表
+    product_id : 產品id,pk,fk 
+    operation :  入庫() 出庫()
+    number : 數量
+    unit : 單位
+
+    """
+
+    product_id = models.OneToOneField("Product", verbose_name=("product"), on_delete=models.PROTECT,primary_key=True,db_column="product_id")
+    operation = models.CharField(max_length=5)
+    number = models.IntegerField(max_length=8)
+    unit = models.CharField(max_length=5)
+    data_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta():
+        db_table = "Inventory"
 
 
 
