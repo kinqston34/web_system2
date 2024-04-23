@@ -89,13 +89,13 @@ class Inventory(models.Model):
     """
     庫存資料表
     product_id : 產品id,pk,fk 
-    operation :  入庫() 出庫()
+    operation :  入庫(IN) 出庫(OUT)
     number : 數量
     unit : 單位
 
     """
-
-    product_id = models.OneToOneField("Product", verbose_name=("product"), on_delete=models.PROTECT,primary_key=True,db_column="product_id")
+    record = models.AutoField(primary_key=True)
+    product_id = models.ForeignKey("Product", verbose_name=("product"), on_delete=models.PROTECT,db_column="product_id")
     operation = models.CharField(max_length=5)
     number = models.IntegerField(max_length=8)
     unit = models.CharField(max_length=5)

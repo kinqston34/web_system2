@@ -75,13 +75,28 @@ class ProductCreateForm(forms.Form):
     model : Product
 
     columns :
-
+    product_id,name,category,stage
     '''
 
     product_id = forms.CharField(max_length=8)
     name = forms.CharField(max_length=30)
     category = forms.CharField(max_length=2)
     stage = forms.CharField(max_length=3)
+
+class InventoryCreateForm(forms.Form):
+
+    """
+    model : Inventory
+
+    columns :
+    product_id,operation,number,unit
+    """
+
+    product_id = forms.CharField(max_length=8)
+    operation = forms.CharField(max_length=5)
+    number = forms.IntegerField()
+    unit = forms.CharField(max_length=5)
+
 
     
 

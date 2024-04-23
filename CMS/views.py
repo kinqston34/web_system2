@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
-from CMS.models import CMS,MaterialSupply,RawMaterial,Product
-from CMS.forms import CMSLoginForm,MaterialSupplyCreateForm,RawMaterialCreateForm,ProductCreateForm
+from CMS.models import CMS,MaterialSupply,RawMaterial,Product,Inventory
+from CMS.forms import CMSLoginForm,MaterialSupplyCreateForm,RawMaterialCreateForm,ProductCreateForm,InventoryCreateForm
 
 # Create your views here.
 
@@ -22,17 +22,31 @@ def logout(request):
 def inventory(request):
 
     if request.method == "POST":
-        form = ProductCreateForm(request.POST)
-        if form.is_valid():
-            data = {}
-            for field in form.cleaned_data.keys():
-                data[field] = form.cleaned_data[field]
-            db_product = Product(**data)
-            db_product.save()
-            return render(request,"CMS/inventory.html",{"create":"success"})
-        return HttpResponse("Product form_error")
-    
-    return render(request,"CMS/inventory.html")
+        if "new_product" in request.path_info:
+            form = ProductCreateForm(request.POST)
+            if form.is_valid():
+                data = {}
+                for field in form.cleaned_data.keys():
+                    data[field] = form.cleaned_data[field]
+                db_product = Product(**data)
+                db_product.save()
+                return render(request,"CMS/inventory.html",{"create":"success"})
+            return HttpResponse("Product form_error")
+        if "new_inventory" in request.path_info:
+            form = InventoryCreateForm(request.POST)
+            if form.is_valid():
+                data = {}
+                for field in form.cleaned_data.keys():
+                    if field == "product_id":
+                        data[field] = Product.objects.get(product_id = form.cleaned_data[field])
+                    else :
+                        data[field] = form.cleaned_data[field]
+                db_inventory = Inventory(**data)
+                db_inventory.save()
+                return HttpResponse("OK")
+            return HttpResponse("Inventory form_error")
+    db_product = Product.objects.all()   
+    return render(request,"CMS/inventory.html",{"db_product":db_product})
 
 def material(request):
     ref={}

@@ -17,7 +17,7 @@
     
     <div>品項新增 {% if create == "success" %} 新增成功 {% endif %}</div>
     
-    <form action="{% url 'CMS:inventory' %}" method="post">
+    <form action="{% url 'CMS:new_product' %}" method="post">
         {% csrf_token %}
         <label for="product_id">產品編號 : </label>
         <input type="text" name="product_id">
@@ -31,14 +31,41 @@
             <option value="SFG">半成品</option> 
             <option value="FGI">成品</option>
         </select>
-        <BUtton>新增</BUtton>
+        <button>新增</button>
     </form>
     
     <hr>
-    <div>入庫</div>
-    
+    <div>入庫/出庫</div>
+
+    <form action="{% url 'CMS:new_inventory' %}" method="post">
+        {% csrf_token %}
+        <label for="product_id">產品選擇 :</label>
+        <select name="product_id" id="product_id">
+            {% for product in db_product %}
+                <option value="{{product.product_id}}">{{product.name}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="operation">選擇方式 :</label>
+        <select name="operation" id="operation">
+            <option value="IN">入庫</option>
+            <option value="OUT">出庫</option>
+        </select>
+
+        <label for="number">數量 : </label>
+        <input type="number" name="number">
+        <label for="unit">單位 : </label>
+        <select name="unit" id="unit">
+            <option value="set">組/套</option>
+            <option value="piece">片/塊</option>
+            <option value="tube">條</option>
+            <option value="bottle">瓶</option>
+            <option value="box">盒/箱</option>
+            <option value="no" selected>式(沒有特別單位)</option>
+        </select>
+        <button >新增</button>
+    </form>
     <hr>
-    <div>出庫</div>
 
 </body>
 </html>

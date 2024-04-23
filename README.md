@@ -52,3 +52,7 @@
 * CMS models Product Inventory 建立
 * CMS 產品品項新增 建立 (可以新增和修改) -> Product (models.py & forms.py)
 * CMS 設定 inventory 產品品項新增 (views.py)
+
+#### 2024/4/23
+* CMS 設定 inventory 入庫/出庫 輸入(未設定限制)
+* 調整產品品項 和 入庫/出庫 顯示
