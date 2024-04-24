@@ -34,6 +34,38 @@
         <button>新增</button>
     </form>
     
+    <label for="product_search">產品查詢 : </label>
+    <select name="product_search" id="product_search">
+        <option value="id">產品編號</option>
+        <option value="name">產品名稱</option>
+        <option value="category">產品類別</option>
+        <option value="stage">產品階段</option>
+    </select>
+
+    <div>產品查詢結果 : </div>
+    <table>
+        <tr>
+            <th>產品編號</th>
+            <th>產品名稱</th>
+            <th>產品類別</th>
+            <th>產品階段</th>
+        </tr>
+        {% for product in db_product %}
+            <tr>
+                <td>{{product.product_id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.category}}</td>
+                {% if product.stage == "SFG" %}
+                <td>半成品</td>
+                {% elif product.stage == "FGI" %}
+                <td>成品</td>
+                {% endif %}
+                
+            </tr>
+        {% endfor %}
+        
+    </table>
+
     <hr>
     <div>入庫/出庫</div>
 
@@ -65,6 +97,46 @@
         </select>
         <button >新增</button>
     </form>
+    
+    <div>庫存監測資料</div>
+
+    <table>
+        <tr>
+            <th>產品名</th>
+            <th>出/入庫</th>
+            <th>數量</th>
+            <th>單位</th>
+            <th>時間</th>
+        </tr>
+        {% for inventory in db_inventory %}
+        <tr>
+            <td>{{inventory.product_id.name}}</td>
+            {% if inventory.operation == "IN" %}
+                <td>入庫</td>
+            {% elif inventory.operation == "OUT" %}
+                <td>出庫</td>
+            {% endif %}
+            <td>{{inventory.number}}</td>
+            {% if inventory.unit == "set" %}
+                <td>組/套</td>
+            {% elif inventory.unit == "piece" %}
+                <td>片/塊</td>
+            {% elif inventory.unit == "tube"%}
+                <td>條</td>
+            {% elif inventory.unit == "bottle"%}
+                <td>瓶</td>
+            {% elif inventory.unit == "box"%}
+                <td>盒/箱</td>
+            {% elif inventory.unit == "no"%}
+                <td>無</td>
+            {% endif %}
+            <td>{{inventory.data_time}}</td>
+            <td><button><a href="">修改</a></button></td>
+            <td><button><a href="">刪除</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
     <hr>
 
 </body>

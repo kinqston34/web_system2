@@ -45,8 +45,10 @@ def inventory(request):
                 db_inventory.save()
                 return HttpResponse("OK")
             return HttpResponse("Inventory form_error")
+                
     db_product = Product.objects.all()   
-    return render(request,"CMS/inventory.html",{"db_product":db_product})
+    db_inventory = Inventory.objects.all()
+    return render(request,"CMS/inventory.html",{"db_product":db_product,"db_inventory":db_inventory})
 
 def material(request):
     ref={}
