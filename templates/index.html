@@ -16,14 +16,14 @@
         <div class="row">
             
             <nav class="col ms-5 navbar navbar-expand-lg">
-                <div class="navbar-fluid">某某公司 ERP</div>
+                <div class="navbar-fluid brand">某某公司 ERP</div>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav">
-                        <li class="nav-item ms-5">
-                            <a href="{% url 'CMS:login' %}" class="nav-link">物料管理</a>
+                        <li class="nav-item ms-5 brand-link1">
+                            <a href="{% url 'CMS:login' %}" class="nav-link link1">物料管理</a>
                         </li>
-                        <li class="nav-item ms-5">
-                            <a href="{% url 'HRM:login' %}" class="nav-link">人事管理</a>
+                        <li class="nav-item ms-5 brand-link2">
+                            <a href="{% url 'HRM:login' %}" class="nav-link link2">人事管理</a>
                         </li>
                         
                     </ul>
@@ -51,8 +51,118 @@
 
     <main class="container main">
         <h1>ERP 公告</h1>
-        <div class="border border-primary">
-            公告區域
+        <div class="border border-primary mt-5">
+            <h3 class="text-center">公告區域</h3>
+            <section class="sec1">
+                <h5>物料管理 ISO</h5>
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th>公告事項</th>
+                        <th>公告時間</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>物料管理二階文件
+                            <ul>
+                                <li><a href="">原料管理程序書</a></li>
+                                <li><a href="">半成品管理程序書</a></li>
+                                <li><a href="">成品管理程序書</a></li>
+                            </ul>
+                        </td>
+                        <td><br>
+                            <ul>
+                                <li>2024/4/26</li>
+                                <li>2024/4/26</li>
+                                <li>2024/4/26</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>物料管理三階文件
+                            <li><a href="">原料進場檢查儀器操作書</a></li>
+                            <li><a href="">第一製成站點機器操作書</a></li>
+                            <li><a href="">QC1儀器操作書</a></li>
+                            <li><a href="">第二製成站點機器操作書</a></li>
+                            <li><a href="">QC2儀器操作書</a></li>
+                        </td>
+
+                        <td>
+                            <br>
+                            <ul>
+                                <li>2024/4/26</li>
+                                <li>2024/4/26</li>
+                                <li>2024/4/26</li>
+                                <li>2024/4/26</li>
+                                <li>2024/4/26</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>物料管理四階文件
+                            <li><a href="">原料新增登記表</a></li>
+                            <li><a href="">原料入庫檢查表</a></li>
+                            <li><a href="">原料出庫前檢查表</a></li>
+                            <li><a href="">半成品新增登記表</a></li>
+                            <li><a href="">半成品入庫檢查表</a></li>
+                            <li><a href="">半成品出庫前檢查表</a></li>
+                            <li><a href="">成品新增登記表</a></li>
+                            <li><a href="">成品入庫檢查表</a></li>
+                            <li><a href="">成品出庫前檢查表</a></li>
+                        </td>
+
+                        <td><br>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                            <li>2024/4/26</li>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <hr>
+            <section class="sec2">
+                <h5>人事管理 ISO</h5>
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th>公告事項</th>
+                        <th>公告時間</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>人事一階文件
+                            <ul>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </td>
+                        <td>2024/4/26</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>人事二階文件</td>
+                        <td>2024/4/26</td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>人事三階文件</td>
+                        <td>2024/4/26</td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>人事四階文件</td>
+                        <td>2024/4/26</td>
+                    </tr>
+                </table>
+            </section>
         </div>
     </main>
 </body>

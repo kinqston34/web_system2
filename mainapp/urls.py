@@ -3,6 +3,6 @@ from mainapp import views,apps
 
 app_name = apps.MainappConfig.name
 urlpatterns = [
-    url("^index",views.index,name="index"),
+    url("^$",views.index,name="index"),
     url("^login",views.login,name="login"),
 ]
