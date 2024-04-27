@@ -62,3 +62,6 @@
 
 #### 2024/4/26
 * mainapp index 公告區設計
+
+#### 2024/4/27
+* mainapp index 最新消息
