@@ -21,33 +21,20 @@
 
 <div>必須要先新增員工</div>
 
-<form action="{% url 'HRM:search_employee_from_base' %}" method="post">
-    {% csrf_token %}
-    <label for="mode">選擇查詢方式</label>
-    <select name="mode" id="mode">
-        <option value="name">員工姓名</option>
-        <option value="id">員工id</option>
-    </select>
-    <button type="submit">查詢</button>
+<label for="mode">選擇查詢方式</label>
+<select name="mode" id="mode">
+    <option value="name">員工姓名</option>
+    <option value="id">員工id</option>
+</select>
+<button type="submit" id="baseQuery">查詢</button>
+
+<form action="{% url 'HRM:search_employee_from_base2'%}" method="post" class="mt-5 query2">
+    {%csrf_token%}
 </form>
 
-<form action="{% url 'HRM:search_employee_from_base2' %}" method="post" class="mt-5">
-    {% csrf_token %}
-    <div>在職員工列表</div>
-    {% if query == "name" %}
-        <label for="name">請輸入員工姓名:</label>
-        <input type="text" name="name" />
-        <button type="submit">查詢</button>
-    {% elif query == "id" %}
-        <label for="id">請輸入員工編號:</label>
-        <input type="text" name="id">
-        <button type="submit">查詢</button>
-    {% else %}
-        
-    {% endif %}
-</form>
-
-
+{% if result == "no" %}
+    <p>查無此人</p>
+{% endif %}
 
 {% else %}     
 <!----- 員工新增(入職) ------>
@@ -115,28 +102,16 @@
 <!------------------------------------ search_employee -------------------------------------------------->
 {% block search_employee %}
 <div>員工查詢</div>
-<form action="{% url 'HRM:search_employee' %}" method="post">
+
+<label for="mode">選擇查詢方式</label>
+<select name="mode" id="mode">
+    <option value="name">員工姓名</option>
+    <option value="id">員工id</option>
+</select>
+<button type="submit" id="baseQuery">查詢</button>
+
+<form action="{% url 'HRM:search_employee_2' %}" method="post" class="mt-5 query2">
     {% csrf_token %}
-    <label for="mode">選擇查詢方式</label>
-    <select name="mode" id="mode">
-        <option value="name">員工姓名</option>
-        <option value="id">員工id</option>
-    </select>
-    <button type="submit">查詢</button>
-</form>
-<form action="{% url 'HRM:search_employee_2' %}" method="post" class="mt-5">
-    {% csrf_token %}
-    {% if query == "name" %}
-        <label for="name">請輸入員工姓名:</label>
-        <input type="text" name="name" />
-        <button type="submit">查詢</button>
-    {% elif query == "id" %}
-        <label for="id">請輸入員工編號:</label>
-        <input type="text" name="id">
-        <button type="submit">查詢</button>
-    {% else %}
-        
-    {% endif %}
 </form>
 
     <table class="table">   <!--result table -->

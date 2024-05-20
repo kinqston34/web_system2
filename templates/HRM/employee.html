@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>員工管理中心</title>
+
     {%bootstrap_css%}{%bootstrap_javascript%}
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/HRM.css' %}">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!--引入jquery js庫-->
 </head>
 <body>
     <div class="container-fluid">
@@ -54,6 +56,6 @@
             </main>        
         </div>
     </div>    
-      
+    <script type="text/javascript" src="{% static 'js/HRM.js' %}"></script>  <!-- import js file-->
 </body>
 </html>

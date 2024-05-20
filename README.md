@@ -65,3 +65,7 @@
 
 #### 2024/4/27
 * mainapp index 最新消息
+
+#### 2024/5/20
+* HRM / base & search_employee 用 HRM.js 取代
+

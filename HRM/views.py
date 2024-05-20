@@ -66,20 +66,6 @@ def search_employee(request):    #員工查詢 頁面
     
     ref = {"view":"search_employee"}
 
-    if request.method == "POST":
-        mode = request.POST.get("mode")
-        print(mode)
-        if mode == "name":
-            ref["query"] = "name"
-            request.session["mode"] = "name"
-        elif mode == "id":    
-            ref["query"] = "id"
-            request.session["mode"] = "id"
-
-    if "base/search" in request.path_info:   # 員工基本資料的查詢
-        ref["view"] = "new_employee"
-        ref["function"] = "base"
-    print(ref)
     return render(request,"HRM/employee_extend.html",ref)
 
 def search_employee_db(request):  #員工查詢db
@@ -89,18 +75,8 @@ def search_employee_db(request):  #員工查詢db
     else:
         ref = {"view":"search_employee"}
     
-    if request.method == "POST" and "mode" in request.session:  
-        mode = request.session["mode"]
-        if mode == "name":
-            name = request.POST["name"]
-            try:
-                query_data = Staff.objects.get(name = name)
-                
-            except:
-                query_data = "no"
-            
-            ref["result"] = query_data
-        elif mode == "id":
+    if request.method == "POST":  
+        if "id" in request.POST:
             id = request.POST["id"]
             try:
                 query_data = Staff.objects.get(staff_id = id)
@@ -109,8 +85,18 @@ def search_employee_db(request):  #員工查詢db
                 query_data = "no"
 
             ref["result"] = query_data
+        elif "name" in request.POST:
+            name = request.POST["name"]
+            try:
+                query_data = Staff.objects.get(name = name)
+                
+            except:
+                query_data = "no"
+            
+            ref["result"] = query_data
         else:
             print("no thie mode")
+        
         print(ref)
         return render(request,"HRM/employee_extend.html",ref)     
 
